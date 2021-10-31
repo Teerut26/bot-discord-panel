@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 
- function SeverList(props) {
+function SeverList(props) {
   const [Show, setShow] = useState(false);
-  
+
   return (
     <div className="bg-dark border-0 p-3 flex gap-2">
       <div className="flex flex-row gap-3">
@@ -27,8 +27,8 @@ import { connect } from "react-redux";
           </div>
           <div
             onClick={() => {
-                // setShow(!Show)
-                props.dispatch({type:"SET_ID",playload:props.item.id})
+              // setShow(!Show)
+              props.dispatch({ type: "SET_ID", playload: props.item.id });
             }}
             className="btn btn-sm btn-primary rounded-0"
           >
@@ -49,11 +49,13 @@ import { connect } from "react-redux";
   );
 }
 
-export default connect(state =>{return state})(SeverList)
+export default connect((state) => {
+  return state;
+})(SeverList);
 
 const Text = ({ item2 }) => {
   const [url, setUrl] = useState(null);
-  const [data, setData] = useState(null)
+  const [data, setData] = useState(null);
   useEffect(() => {
     getData();
     // console.log(item2);
@@ -63,13 +65,12 @@ const Text = ({ item2 }) => {
       method: "get",
       url: "https://discordapp.com/api/v7/users/" + item2.user.id,
       headers: {
-        authorization:
-          "Bot ODU0MDA1MDkzNTE4NDA5NzU5.YMdoOA.RkNteTHDV-MzGvRTUmR9WNmZPI8",
+        authorization: "Bot " + localStorage.getItem("TOKEN"),
       },
     };
     let res = await axios(config);
     let data = await res.data;
-    setData(data)
+    setData(data);
     setUrl(`https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.png`);
   };
   return (

@@ -52,7 +52,7 @@ class Home extends Component {
             status: "online",
             game: null,
           },
-          token: "ODU0MDA1MDkzNTE4NDA5NzU5.YMdoOA.RkNteTHDV-MzGvRTUmR9WNmZPI8",
+          token: localStorage.getItem("TOKEN"),
           shard: [0, 1],
         },
       })
